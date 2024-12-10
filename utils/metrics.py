@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 
-from utils import TryExcept, threaded
-
+from yolov5.utils.general import TryExcept
+from yolov5.utils.threading_utils import threaded
 
 def fitness(x):
     """Calculates fitness of a model using weighted sum of metrics P, R, mAP@0.5, mAP@0.5:0.95."""

@@ -45,9 +45,11 @@ except (ImportError, AssertionError):
 
 from ultralytics.utils.checks import check_requirements
 
-from utils import TryExcept, emojis
-from utils.downloads import curl_download, gsutil_getsize
-from utils.metrics import box_iou, fitness
+from yolov5.utils.try_except import TryExcept
+from yolov5.utils import emojis
+from yolov5.utils.downloads import curl_download, gsutil_getsize
+from yolov5.utils.metrics import box_iou, fitness
+
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[1]  # YOLOv5 root directory
@@ -369,7 +371,7 @@ def git_describe(path=ROOT):
         return ""
 
 
-@TryExcept()
+@TryExcept
 @WorkingDirectory(ROOT)
 def check_git_status(repo="ultralytics/yolov5", branch="master"):
     """Checks if YOLOv5 code is up-to-date with the repository, advising 'git pull' if behind; errors return informative
@@ -586,7 +588,7 @@ def check_dataset(data, autodownload=True):
 
 def check_amp(model):
     """Checks PyTorch AMP functionality for a model, returns True if AMP operates correctly, otherwise False."""
-    from models.common import AutoShape, DetectMultiBackend
+    from yolov5.models.common import AutoShape, DetectMultiBackend
 
     def amp_allclose(model, im):
         """Compares FP32 and AMP model inference outputs, ensuring they are close within a 10% absolute tolerance."""
