@@ -38,11 +38,17 @@ import yaml
 from torch.optim import lr_scheduler
 from tqdm import tqdm
 
+import sys
+from pathlib import Path
+
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[0]  # YOLOv5 root directory
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))  # add ROOT to PATH
-ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
+if str(ROOT.parents[0]) not in sys.path:
+    sys.path.append(str(ROOT.parents[0]))  # add project root to PATH
+ # Add ROOT to Python path
+
 
 import val as validate  # for end-of-epoch mAP
 from models.experimental import attempt_load

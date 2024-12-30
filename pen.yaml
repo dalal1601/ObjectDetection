@@ -1,0 +1,5 @@
+train: dataset/images/train  # Path to the training images
+val: dataset/images/val      # Path to the validation images
+
+nc: 1                        # Number of classes (1 for "pen")
+names: ['pen']               # List of class names
